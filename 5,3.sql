@@ -1,0 +1,9 @@
+SET SERVEROUTPUT ON
+
+CREATE OR REPLACE TRIGGER insert_newemp
+AFTER INSERT ON emp
+FOR EACH ROW
+BEGIN
+    INSERT INTO newemp VALUES (:NEW.empno, :NEW.ename, :NEW.salary);
+END;
+/

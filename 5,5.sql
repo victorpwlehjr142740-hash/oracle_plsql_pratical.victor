@@ -1,0 +1,9 @@
+SET SERVEROUTPUT ON
+
+CREATE OR REPLACE TRIGGER delete_newemp
+AFTER DELETE ON emp
+FOR EACH ROW
+BEGIN
+    INSERT INTO newemp VALUES (:OLD.empno, :OLD.ename, :OLD.salary);
+END;
+/

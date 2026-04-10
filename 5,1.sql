@@ -1,0 +1,10 @@
+SET SERVEROUTPUT ON
+
+CREATE OR REPLACE TRIGGER no_weekend_access
+BEFORE INSERT OR UPDATE OR DELETE ON emp
+BEGIN
+    IF TO_CHAR(SYSDATE, 'DY') IN ('SAT', 'SUN') THEN
+        RAISE_APPLICATION_ERROR(-20001, 'No changes allowed on weekends');
+    END IF;
+END;
+/
